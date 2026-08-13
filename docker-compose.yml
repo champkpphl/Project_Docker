@@ -15,6 +15,8 @@ services:
     build: ./backend
     container_name: backend
     restart: always
+    env_file:
+      - .env
     ports:
       - "8081:80"
     depends_on:
@@ -25,6 +27,8 @@ services:
     build: ./api
     container_name: api
     restart: always
+    env_file:
+      - .env
     ports:
       - "8083:80"
     depends_on:
@@ -34,11 +38,8 @@ services:
     image: mysql:8.0
     container_name: mysql
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: department
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin123
+    env_file:
+      - .env
     volumes:
       - mysql_data:/var/lib/mysql
     expose:
@@ -48,12 +49,10 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     restart: always
+    env_file:
+      - .env
     ports:
       - "8082:80"
-    environment:
-      PMA_HOST: mysql
-      PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: root
     depends_on:
       - mysql
 

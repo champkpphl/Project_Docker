@@ -9,10 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-$host = 'mysql';
-$db   = 'department';
-$user = 'admin';
-$pass = 'admin123';
+$host = getenv('PMA_HOST') ?: 'mysql';
+$db   = getenv('MYSQL_DATABASE') ?: 'department';
+$user = getenv('MYSQL_USER') ?: 'admin';
+$pass = getenv('MYSQL_PASSWORD') ?: 'admin123';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
