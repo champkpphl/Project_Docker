@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แผนกวิชาเทคโนโลยีสารสนเทศ | วิทยาลัยเทคนิคกำแพงเพชร</title>
+    <meta name="description" content="แผนกวิชาเทคโนโลยีสารสนเทศ วิทยาลัยเทคนิคกำแพงเพชร มุ่งเน้นการผลิตบุคลากรคุณภาพด้านไอที พัฒนาซอฟต์แวร์ เครือข่าย และปัญญาประดิษฐ์">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Three.js 3D Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="brand-logo">
+                <img src="logo.jpg" alt="IT Logo" class="logo-img">
+                <div class="brand-text">
+                    <span class="brand-title">เทคโนโลยีสารสนเทศ</span>
+                    <span class="brand-sub">วิทยาลัยเทคนิคกำแพงเพชร</span>
+                </div>
+            </a>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">หน้าแรก</a></li>
+                <li><a href="#programs" class="nav-link">หลักสูตร</a></li>
+                <li><a href="#tracks" class="nav-link">สาขางานเชี่ยวชาญ</a></li>
+                <li><a href="#showcase" class="nav-link">ผลงานสิ่งประดิษฐ์</a></li>
+                <li><a href="#labs" class="nav-link">ห้องปฏิบัติการ</a></li>
+                <li class="theme-switch-wrapper">
+                    <button class="theme-switch-btn" id="themeToggle" title="สลับธีม สว่าง/มืด" aria-label="Toggle Light/Dark Theme">
+                        <span class="theme-icon moon-icon"><i class="fas fa-moon"></i></span>
+                        <span class="theme-slider"></span>
+                        <span class="theme-icon sun-icon"><i class="fas fa-sun"></i></span>
+                    </button>
+                </li>
+                <li style="margin-left: 0.5rem;" id="authContainer">
+                    <a href="http://localhost:8081/login.php" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1.2rem; border: 1px solid var(--accent-cyan); color: var(--text-color); border-radius: 50px; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: all 0.3s ease; background: rgba(0, 242, 254, 0.05); white-space: nowrap;" onmouseover="this.style.background='rgba(0, 242, 254, 0.15)'" onmouseout="this.style.background='rgba(0, 242, 254, 0.05)'">
+                        <i class="fas fa-user"></i> เข้าสู่ระบบ
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <canvas id="heroCanvas"></canvas>
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-microchip"></i>
+                    <span id="heroBadgeText">Information Technology Department • KPTC</span>
+                </div>
+                <h1 class="hero-title">
+                    <span id="heroTitle1">สร้างอนาคตด้วย</span> <span id="heroTitle1Hi" class="text-gradient">เทคโนโลยี</span><br>
+                    <span id="heroTitle2">ขับเคลื่อนโลกด้วย</span> <span id="heroTitle2Hi" class="text-gradient">นวัตกรรม IT</span>
+                </h1>
+                <p class="hero-subtitle" id="heroSubtitle">
+                    แผนกวิชาเทคโนโลยีสารสนเทศ วิทยาลัยเทคนิคกำแพงเพชร มุ่งเน้นการผลิตนักพัฒนาดิจิทัล ผู้เชี่ยวชาญระบบเครือข่าย นักพัฒนาซอฟต์แวร์ และเทคโนโลยีปัญญาประดิษฐ์สู่อุตสาหกรรมยุคใหม่
+                </p>
+                <div class="hero-actions">
+                    <a href="#programs" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> สำรวจหลักสูตรการเรียน
+                    </a>
+                    <a href="#showcase" class="btn btn-secondary">
+                        <i class="fas fa-play-circle"></i> ชมผลงานนักศึกษา
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="glass-card logo-display-card">
+                    <!-- 3D Interactive WebGL Canvas Overlay -->
+                    <div class="canvas-3d-wrapper">
+                        <canvas id="webgl3d"></canvas>
+                        <img src="logo.jpg" alt="IT Department Logo Circular" class="hero-logo-lg">
+                    </div>
+                    <h3 class="logo-card-title">แผนกวิชาเทคโนโลยีสารสนเทศ</h3>
+                    <p class="logo-card-sub">วิทยาลัยเทคนิคกำแพงเพชร</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="container">
+        <div class="stats-grid">
+            <div class="glass-card stat-item">
+                <div class="stat-number" data-target="100" data-suffix="%">0%</div>
+                <div class="stat-label">อัตราการมีงานทำและศึกษาต่อ</div>
+            </div>
+            <div class="glass-card stat-item">
+                <div class="stat-number" data-target="50" data-suffix="+">0+</div>
+                <div class="stat-label">สถานประกอบการพันธมิตร</div>
+            </div>
+            <div class="glass-card stat-item">
+                <div class="stat-number" data-target="20" data-suffix="+">0+</div>
+                <div class="stat-label">รางวัลสิ่งประดิษฐ์ & แข่งขันทักษะ</div>
+            </div>
+            <div class="glass-card stat-item">
+                <div class="stat-number" data-target="800" data-suffix="+">0+</div>
+                <div class="stat-label">ศิษย์เก่าในสายงานไอที</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs & Degree Levels Section -->
+    <section id="programs" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" id="progTag">Academic Programs</span>
+                <h2 class="section-title" id="progTitle">หลักสูตรการศึกษาที่เปิดสอน</h2>
+                <p class="section-desc" id="progDesc">ครอบคลุมทุกระดับการศึกษา ตั้งแต่ระดับพื้นฐานจนถึงปริญญาตรี พร้อมฝึกปฏิบัติจริงกับอุปกรณ์มาตรฐานอุตสาหกรรม</p>
+            </div>
+
+            <div class="programs-grid">
+                <!-- Program 1 -->
+                <div class="program-card fade-up">
+                    <div class="program-level">
+                        <i id="prog1Icon" class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="program-title" id="prog1Title">ระดับ ปวช.</h3>
+                    <p class="program-desc" id="prog1Desc">ประกาศนียบัตรวิชาชีพ (รับผู้จบ ม.3) มุ่งเน้นสร้างพื้นฐานการเขียนโปรแกรม ระบบคอมพิวเตอร์ กราฟิก และเครือข่ายเบื้องต้น</p>
+                    <div class="program-tags">
+                        <span class="tag" id="prog1Tag1">ระยะเวลา 3 ปี</span>
+                        <span class="tag" id="prog1Tag2">พื้นฐานเขียนโปรแกรม</span>
+                        <span class="tag" id="prog1Tag3">Hardware & OS</span>
+                    </div>
+                    <a href="#contact" class="btn btn-secondary" style="width: 100%;">รายละเอียดสมัครเรียน</a>
+                </div>
+
+                <!-- Program 2 -->
+                <div class="program-card fade-up" style="animation-delay: 0.1s;">
+                    <div class="program-level" style="background: rgba(127, 0, 255, 0.15); color: var(--accent-purple); border-color: rgba(127, 0, 255, 0.3);">
+                        <i id="prog2Icon" class="fas fa-server"></i>
+                    </div>
+                    <h3 class="program-title"><span id="prog2Title">ระดับ ปวส.</span> <span style="font-size: 0.8rem; color: var(--accent-cyan); float: right;">[ ยอดนิยม ]</span></h3>
+                    <p class="program-desc" id="prog2Desc">ประกาศนียบัตรวิชาชีพชั้นสูง (รับผู้จบ ปวช. หรือ ม.6) เน้นความเชี่ยวชาญขั้นสูง Web/App Development, Cloud Computing และ Cybersecurity</p>
+                    <div class="program-tags">
+                        <span class="tag" id="prog2Tag1">ระยะเวลา 2 ปี</span>
+                        <span class="tag" id="prog2Tag2">Full-Stack Dev</span>
+                        <span class="tag" id="prog2Tag3">Network & Cloud</span>
+                    </div>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">รายละเอียดสมัครเรียน</a>
+                </div>
+
+                <!-- Program 3 -->
+                <div class="program-card fade-up" style="animation-delay: 0.2s;">
+                    <div class="program-level" style="background: rgba(0, 230, 118, 0.15); color: var(--accent-emerald); border-color: rgba(0, 230, 118, 0.3);">
+                        <i id="prog3Icon" class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="program-title" id="prog3Title">ระดับ ปริญญาตรี (ทล.บ.)</h3>
+                    <p class="program-desc" id="prog3Desc">เทคโนโลยีบัณฑิต สาขาวิชาเทคโนโลยีสารสนเทศ (ต่อเนื่อง 2 ปี) เติมเต็มทักษะบริหารจัดการโครงการวิจัย สถาปัตยกรรมซอฟต์แวร์ และ AI</p>
+                    <div class="program-tags">
+                        <span class="tag" id="prog3Tag1">ระยะเวลา 2 ปี (ต่อเนื่อง)</span>
+                        <span class="tag" id="prog3Tag2">AI & Data Analytics</span>
+                        <span class="tag" id="prog3Tag3">IT Management</span>
+                    </div>
+                    <a href="#contact" class="btn btn-secondary" style="width: 100%;">รายละเอียดสมัครเรียน</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specializations & Career Paths Section -->
+    <section id="tracks" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Career Tracks & Expertise</span>
+                <h2 class="section-title">สาขางานและความเชี่ยวชาญ</h2>
+                <p class="section-desc">เน้นทักษะที่ตลาดงานสายเทคโนโลยีต้องการสูงสุด พร้อมส่งเสริมทักษะปฏิบัติตามมาตรฐานสากล</p>
+            </div>
+
+            <div class="tracks-grid">
+                <div class="glass-card track-card">
+                    <div class="track-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="track-content">
+                        <h3>Software & Mobile App Development</h3>
+                        <p>พัฒนาเว็บแอปพลิเคชัน โมบายแอปพลิเคชันทั้ง iOS/Android ด้วย Node.js, React, Flutter, Python และภาษาชั้นนำ</p>
+                        <span class="tag">Web Developer</span> <span class="tag">Mobile App Dev</span> <span class="tag">UX/UI Designer</span>
+                    </div>
+                </div>
+
+                <div class="glass-card track-card">
+                    <div class="track-icon" style="color: var(--accent-purple);">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <div class="track-content">
+                        <h3>Network Engineering & Cybersecurity</h3>
+                        <p>ออกแบบ วางระบบเครือข่ายและเซิร์ฟเวอร์ ดูแลความปลอดภัยไซเบอร์ ฝึกปฏิบัติกับอุปกรณ์ Cisco, MikroTik และ Linux Server</p>
+                        <span class="tag">Network Engineer</span> <span class="tag">System Admin</span> <span class="tag">Cybersec Analyst</span>
+                    </div>
+                </div>
+
+                <div class="glass-card track-card">
+                    <div class="track-icon" style="color: var(--accent-emerald);">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="track-content">
+                        <h3>AI, Data Science & Smart IoT Innovation</h3>
+                        <p>ประยุกต์ใช้เทคโนโลยีปัญญาประดิษฐ์ การประมวลผลข้อมูลขนาดใหญ่ และระบบอุปกรณ์อัจฉริยะ IoT ควบคุมผ่านคลาวด์</p>
+                        <span class="tag">AI Developer</span> <span class="tag">IoT Specialist</span> <span class="tag">Data Analyst</span>
+                    </div>
+                </div>
+
+                <div class="glass-card track-card">
+                    <div class="track-icon" style="color: #ff9800;">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="track-content">
+                        <h3>Cloud Computing & DevOps Solutions</h3>
+                        <p>จัดการสถาปัตยกรรมระบบคลาวด์ (AWS / Google Cloud / Docker) พร้อมระบบการปรับใช้อัตโนมัติ (CI/CD Pipelines)</p>
+                        <span class="tag">DevOps Engineer</span> <span class="tag">Cloud Specialist</span> <span class="tag">Database Admin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="section" style="background: rgba(0, 0, 0, 0.1);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">News & Announcements</span>
+                <h2 class="section-title">ประกาศและข่าวสาร</h2>
+                <p class="section-desc">อัปเดตข่าวสาร กิจกรรม และประกาศสำคัญจากทางแผนกวิชาเทคโนโลยีสารสนเทศ</p>
+            </div>
+            <div class="tracks-grid" id="newsContainer">
+                <div style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 2rem;">กำลังโหลดข่าวสาร...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Project Showcase Section -->
+    <section id="showcase" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Innovation & Projects</span>
+                <h2 class="section-title">ผลงานและสิ่งประดิษฐ์ของนักศึกษา</h2>
+                <p class="section-desc">ตัวอย่างผลงานที่ได้รับรางวัลและผลงานโครงงานจบของนักศึกษาแผนกเทคโนโลยีสารสนเทศ</p>
+            </div>
+
+            <!-- Filter Category Buttons -->
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
+                <button class="filter-btn" data-filter="ai">AI & IoT</button>
+                <button class="filter-btn" data-filter="web">Web & Mobile</button>
+                <button class="filter-btn" data-filter="network">Network & Security</button>
+            </div>
+
+            <!-- Project Grid -->
+            <div class="showcase-grid">
+                <!-- Project 1 -->
+                <div class="glass-card project-card" data-category="ai">
+                    <div class="project-thumb">
+                        <i class="fas fa-robot project-overlay-icon"></i>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-cat">AI & IoT Innovation</span>
+                        <h3 class="project-title">ระบบตรวจจับความปลอดภัยการเกษตรอัจฉริยะด้วย AI</h3>
+                        <p class="project-desc">โครงงานสิ่งประดิษฐ์ใช้กล้อง AI ตรวจจับศัตรูพืชและรดน้ำอัตโนมัติ ควบคุมผ่านแอปมือถือ</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card project-card" data-category="web">
+                    <div class="project-thumb">
+                        <i class="fas fa-hospital-user project-overlay-icon" style="color: var(--accent-purple);"></i>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-cat" style="color: var(--accent-purple);">Web & Mobile App</span>
+                        <h3 class="project-title">ระบบบริหารจัดการนัดหมายโรงพยาบาล KPTC Health</h3>
+                        <p class="project-desc">เว็บแอปพลิเคชันและโมบายแอปจองคิวตรวจทางการแพทย์แบบเรียลไทม์ พร้อมระบบการแจ้งเตือน</p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-card project-card" data-category="network">
+                    <div class="project-thumb">
+                        <i class="fas fa-network-wired project-overlay-icon" style="color: var(--accent-emerald);"></i>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-cat" style="color: var(--accent-emerald);">Network & Security</span>
+                        <h3 class="project-title">ระบบต้านทานภัยคุกคามไซเบอร์และจัดเก็บ Log สถาบัน</h3>
+                        <p class="project-desc">การออกแบบระบบเซิร์ฟเวอร์ความปลอดภัยสูงและระบบพิสูจน์ตัวตนผู้ใช้งาน Wi-Fi องค์กร</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Labs & Facilities Section -->
+    <section id="labs" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Learning Environment</span>
+                <h2 class="section-title">ห้องปฏิบัติการและเครื่องมือเรียนรู้</h2>
+                <p class="section-desc">อุปกรณ์ทันสมัยระดับมาตรฐานอุตสาหกรรม คอมพิวเตอร์สเปกสูงเพื่อการประมวลผลและการเรียนรู้ที่มีประสิทธิภาพ</p>
+            </div>
+
+            <div class="labs-grid">
+                <div class="glass-card lab-card">
+                    <div class="lab-icon-wrapper">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3 class="lab-title">High-Performance Computer Lab</h3>
+                    <p class="lab-desc">ห้องปฏิบัติการคอมพิวเตอร์ความเร็วสูงสำหรับงานประมวลผล AI, ตัดต่อสื่อมัลติมีเดีย และเขียนโค้ดซอฟต์แวร์</p>
+                </div>
+
+                <div class="glass-card lab-card">
+                    <div class="lab-icon-wrapper" style="background: rgba(127, 0, 255, 0.1); border-color: rgba(127, 0, 255, 0.3); color: var(--accent-purple);">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="lab-title">Cisco Networking & Server Lab</h3>
+                    <p class="lab-desc">ชุดเครื่องมือทดลองระบบเครือข่าย Cisco, Router, Switch, Firewall และ Enterprise Rack Server</p>
+                </div>
+
+                <div class="glass-card lab-card">
+                    <div class="lab-icon-wrapper" style="background: rgba(0, 230, 118, 0.1); border-color: rgba(0, 230, 118, 0.3); color: var(--accent-emerald);">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3 class="lab-title">Smart IoT & Embedded Hardware Center</h3>
+                    <p class="lab-desc">อุปกรณ์ไมโครคอนโทรลเลอร์ ESP32, Raspberry Pi, เซนเซอร์อัจฉริยะ และเครื่องพิมพ์ 3D สำหรับสร้างนวัตกรรม</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission & Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Get In Touch</span>
+                <h2 class="section-title">สมัครเรียน & ติดต่อสอบถาม</h2>
+                <p class="section-desc">สนใจเข้าศึกษาในแผนกวิชาเทคโนโลยีสารสนเทศ หรือสอบถามข้อมูลเพิ่มเติม สามารถส่งข้อความหรือติดต่อเราได้ทันที</p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Contact Info -->
+                <div class="glass-card contact-info-card">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem;">ช่องทางติดต่อแผนก</h3>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-building-columns"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>สถานที่ตั้ง</h4>
+                            <p>แผนกวิชาเทคโนโลยีสารสนเทศ วิทยาลัยเทคนิคกำแพงเพชร<br>เลขที่ 113 หมู่ 1 ถ.พหลโยธิน ต.หนองปลิง อ.เมือง จ.กำแพงเพชร 62000</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-volume"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>เบอร์โทรศัพท์ติดต่อ</h4>
+                            <p>055-711-190 (งานรับสมัครและแผนกวิชาเทคโนโลยีสารสนเทศ)</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>อีเมล (Email)</h4>
+                            <p>it@kptc.ac.th / info@kptc.ac.th</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <div class="contact-detail">
+                            <h4>Facebook Fanpage</h4>
+                            <p>แผนกวิชาเทคโนโลยีสารสนเทศ วิทยาลัยเทคนิคกำแพงเพชร</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Contact Form -->
+                <div class="glass-card contact-form-card">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem;">ส่งข้อความสอบถามการสมัครเรียน</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label">ชื่อ - นามสกุล</label>
+                            <input type="text" class="form-input" placeholder="ระบุชื่อและนามสกุลของคุณ" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">เบอร์โทรศัพท์ / Line ID</label>
+                            <input type="text" class="form-input" placeholder="ระบุเบอร์โทรศัพท์สำหรับติดต่อกลับ" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">ระดับชั้นที่สนใจสมัคร</label>
+                            <select class="form-input">
+                                <option>ปวช. (ประกาศนียบัตรวิชาชีพ)</option>
+                                <option>ปวส. (ประกาศนียบัตรวิชาชีพชั้นสูง)</option>
+                                <option>ปริญญาตรี (เทคโนโลยีบัณฑิต)</option>
+                                <option>สอบถามข้อมูลทั่วไป</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">ข้อความสอบถาม</label>
+                            <textarea class="form-textarea" placeholder="พิมพ์ข้อความที่คุณต้องการสอบถามแผนกวิชา..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> ส่งข้อความติดต่อ
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <img src="logo.jpg" alt="IT Logo">
+                        <h4 style="font-size: 1.15rem; font-weight: 700;">เทคโนโลยีสารสนเทศ</h4>
+                    </div>
+                    <p class="footer-desc">
+                        แผนกวิชาเทคโนโลยีสารสนเทศ วิทยาลัยเทคนิคกำแพงเพชร มุ่งมั่นพัฒนาการศึกษา สร้างนวัตกรรมไอทีสู่สังคม
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">ลิงก์ด่วน</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">หน้าแรก</a></li>
+                        <li><a href="#programs">หลักสูตร</a></li>
+                        <li><a href="#tracks">สาขางานเชี่ยวชาญ</a></li>
+                        <li><a href="#showcase">ผลงานนักศึกษา</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">ระดับการศึกษา</h4>
+                    <ul class="footer-links">
+                        <li><a href="#programs">ปวช. เทคโนโลยีสารสนเทศ</a></li>
+                        <li><a href="#programs">ปวส. เทคโนโลยีสารสนเทศ</a></li>
+                        <li><a href="#programs">ปริญญาตรี เทคโนโลยีบัณฑิต</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">สังกัดสถาบัน</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                        วิทยาลัยเทคนิคกำแพงเพชร<br>
+                        สำนักงานคณะกรรมการการอาชีวศึกษา (สอศ.)<br>
+                        กระทรวงศึกษาธิการ
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 แผนกวิชาเทคโนโลยีสารสนเทศ วิทยาลัยเทคนิคกำแพงเพชร (Kamphaeng Phet Technical College). All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="app.js?v=4"></script>
+</body>
+</html>
